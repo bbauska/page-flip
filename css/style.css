@@ -1,3 +1,4 @@
+/* ./css/style.css of page-flip for page-flip.bauska.org */
 @import url('https://fonts.googleapis.com/css?family=Stalemate');
 *, *:before, *:after {
   box-sizing: border-box;
@@ -30,16 +31,16 @@ body {
   width: 670px;
 }
 .book-wrapper img {
-      filter: drop-shadow(15px 5px 5px #494338);
+  filter: drop-shadow(15px 5px 5px #494338);
 }
 .pages-container {
-    position: absolute;
-    top: 4%;
-    left: 3%;
-    right: 0;
-    bottom: 0;
-    width: 91.5%;
-    height: 91%;
+  position: absolute;
+  top: 4%;
+  left: 3%;
+  right: 0;
+  bottom: 0;
+  width: 91.5%;
+  height: 91%;
 }
 .pages {
 
@@ -59,7 +60,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 10%;
+  padding: 5%;  /* 10%; */
 }
 .content-inner {
   text-align: center;
@@ -70,7 +71,8 @@ body {
   user-select: none;
 }
 .page-num-1 .pages-background {
-  background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(https://openclipart.org/image/2400px/svg_to_png/242093/Vintage-Floral-Texture-Background.png);
+  background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
+    url(https://openclipart.org/image/2400px/svg_to_png/242093/Vintage-Floral-Texture-Background.png);
   background-size: cover;
   opacity: 0.2;
   width: 100%;
