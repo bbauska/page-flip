@@ -31,7 +31,7 @@ body {
   width: 670px;
 }
 .book-wrapper img {
-  filter: drop-shadow(18px 5px 5px #494338);  /* 15px; */
+  filter: drop-shadow(11px 3px 3px #494338);  /* 15px 5px 5px; */
 }
 .pages-container {
   position: absolute;
