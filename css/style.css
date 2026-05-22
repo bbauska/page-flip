@@ -76,7 +76,7 @@ p {
 }
 .page-num-1 .pages-background {
   background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
-    url(https://openclipart.org/image/2400px/svg_to_png/242093/Vintage-Floral-Texture-Background.png);
+    url(https://github.com/bbauska/page-flip/blob/main/images/ventage-floral.jpg);
   background-size: cover;
   opacity: 0.2;
   width: 100%;
