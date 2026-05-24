@@ -18,7 +18,8 @@ body {
 */
   background:  linear-gradient(
     rgba(255, 255, 255, 0.9), 
-    rgba(255, 255, 255, 0.9)), url("./images/Vintage_Floral.jpg");
+    rgba(255, 255, 255, 0.9)), 
+    url(https://github.com/bbauska/page-flip/blob/main/images/Vintage_Floral.jpg);
   font-family: cursive, 'Stalemate';
 }
 p {
