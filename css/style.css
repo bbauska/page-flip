@@ -1,4 +1,5 @@
 /* ./css/style.css of page-flip for page-flip.bauska.org */
+/*    "../images/Vintage_Floral.jpg"); */
 @import url('https://fonts.googleapis.com/css?family=Stalemate');
 *, *:before, *:after {
   box-sizing: border-box;
@@ -18,7 +19,7 @@ body {
 */
   background:  linear-gradient(
     rgba(255, 255, 255, 0.9), 
-    rgba(255, 255, 255, 0.9)), url("../images/Vintage_Floral.jpg");
+    rgba(255, 255, 255, 0.9)), url("https://img00.deviantart.net/cbb9/i/2005/258/c/4/paper_texture_v5_by_bashcorpo.jpg");
   font-family: cursive, 'Stalemate';
 }
 p {
@@ -50,7 +51,8 @@ p {
 
 }
 .pages [class^="page-num-"] {
-  background-image: url(https://img00.deviantart.net/cbb9/i/2005/258/c/4/paper_texture_v5_by_bashcorpo.jpg);
+https://openclipart.org/image/2400px/svg_to_png/242093/Vintage-Floral-Texture-Background.png
+  background-image: url("https://img00.deviantart.net/cbb9/i/2005/258/c/4/paper_texture_v5_by_bashcorpo.jpg");
   background-size: auto 100%;
   position: relative;
 }
@@ -76,7 +78,7 @@ p {
 }
 .page-num-1 .pages-background {
   background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
-    url("../images/ventage-floral.jpg");
+    url(https://openclipart.org/image/2400px/svg_to_png/242093/Vintage-Floral-Texture-Background.png);
   background-size: cover;
   opacity: 0.2;
   width: 100%;
