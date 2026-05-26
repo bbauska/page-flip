@@ -22,7 +22,7 @@ body {
   font-family: cursive, 'Stalemate';
 }
 p {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .container {
@@ -35,7 +35,7 @@ p {
   width: 670px;
 }
 .book-wrapper img {
-  filter: drop-shadow(10px 2px 2px #494338);  /* 15px 5px 5px */
+  filter: drop-shadow(15px 5px 5px #494338);  /* 15px 5px 5px */
 }
 .pages-container {
   position: absolute;
