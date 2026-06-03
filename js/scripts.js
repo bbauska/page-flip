@@ -1,30 +1,13 @@
-	/**
- * page-turn.js 4th release
- * turnjs.com
- * turnjs.com/license.txt
- *
- * Copyright (C) 2012 Emmanuel Garcia
- * All rights reserved
- **/
-
+/* ./js/scripts.js of page-flip for page-flip.bauska.org */
 (function($) {
-
-'use strict';
-
-var has3d,
-  
+  'use strict';
+  var has3d,
   hasRot,
-
   vendor = '',
-  
   version = '4.1.0',
-
   PI = Math.PI,
-
   A90 = PI/2,
-
   isTouch = 'ontouchstart' in window,
-
   mouseEvents = (isTouch) ?
     {
       down: 'touchstart',
@@ -42,11 +25,10 @@ var has3d,
       out: 'mouseout'
     },
 
-  // Contansts used for each corner
+  // Constants used for each corner
   //   | tl * tr |
   // l | *     * | r
   //   | bl * br |
-
   corners = {
     backward: ['bl', 'tl'],
     forward: ['br', 'tr'],
@@ -54,68 +36,42 @@ var has3d,
   },
 
   // Display values
-
   displays = ['single', 'double'],
 
   // Direction values
-
   directions = ['ltr', 'rtl'],
 
   // Default options
-
   turnOptions = {
-
     // Enables hardware acceleration
-
     acceleration: true,
-
     // Display
-
     display: 'double',
-
     // Duration of transition in milliseconds
-
     duration: 600,
-
     // First page
-
     page: 1,
-    
     // Enables gradients
-
     gradients: true,
-
     // Corners used when turning the page
-
     turnCorners: 'bl,br',
-
     // Events
-
     when: null
   },
-
   flipOptions = {
-
     // Size of the active zone of each corner
-
     cornerSize: 100
-
   },
-
   // Number of pages in the DOM, minimum value: 6
-
   pagesInDOM = 6,
-  
 
 turnMethods = {
 
   // Singleton constructor
   // $('#selector').turn([options]);
-
   init: function(options) {
 
     // Define constants
-    
     has3d = 'WebKitCSSMatrix' in window || 'MozPerspective' in document.body.style;
     hasRot = rotationAvailable();
     vendor = getPrefix();
@@ -123,13 +79,11 @@ turnMethods = {
     var i, that = this, pageNum = 0, data = this.data(), ch = this.children();
 
     // Set initial configuration
-
     options = $.extend({
       width: this.width(),
       height: this.height(),
       direction: this.attr('dir') || this.css('direction') || 'ltr'
     }, turnOptions, options);
-
     data.opts = options;
     data.pageObjs = {};
     data.pages = {};
@@ -146,36 +100,28 @@ turnMethods = {
       start: $.proxy(turnMethods._eventStart, this)
     };
 
-
-
     // Add event listeners
-
     if (options.when)
       for (i in options.when)
         if (has(i, options.when))
           this.bind(i, options.when[i]);
 
     // Set the css
-
     this.css({position: 'relative', width: options.width, height: options.height});
 
     // Set the initial display
-
     this.turn('display', options.display);
 
     // Set the direction
-
     if (options.direction!=='')
       this.turn('direction', options.direction);
     
     // Prevent blue screen problems of switching to hardware acceleration mode
     // By forcing hardware acceleration for ever
-
     if (has3d && !isTouch && options.acceleration)
       this.transform(translate(0, 0, true));
 
     // Add pages from the DOM
-
     for (i = 0; i<ch.length; i++) {
       if ($(ch[i]).attr('ignore')!='1') {
         this.turn('addPage', ch[i], ++pageNum);
@@ -183,7 +129,6 @@ turnMethods = {
     }
 
     // Event listeners
-
     $(this).bind(mouseEvents.down, data.eventHandlers.touchStart).
       bind('end', turnMethods._eventEnd).
       bind('pressed', turnMethods._eventPressed).
@@ -196,20 +141,15 @@ turnMethods = {
       bind(mouseEvents.up, data.eventHandlers.touchEnd);
 
     // Set the initial page
-
     this.turn('page', options.page);
 
     // This flipbook is ready
-
     data.done = true;
-
     return this;
   },
 
   // Adds a page from external data
-
   addPage: function(element, page) {
-
     var currentPage,
       className,
       incPages = false,
@@ -220,26 +160,18 @@ turnMethods = {
       return false;
 
     // Read the page number from the className of `element` - format: p[0-9]+
-
     if ((currentPage = /\bp([0-9]+)\b/.exec($(element).attr('class'))))
       page = parseInt(currentPage[1], 10);
-
     if (page) {
-      
       if (page==lastPage)
         incPages = true;
       else if (page>lastPage)
         throw turnError('Page "'+page+'" cannot be inserted');
-
     } else {
-      
       page = lastPage;
       incPages = true;
-
     }
-
     if (page>=1 && page<=lastPage) {
-
       if (data.display=='double')
         className = (page%2) ? ' odd' : ' even';
       else
@@ -272,14 +204,10 @@ turnMethods = {
       // Remove pages out of range
       turnMethods._removeFromDOM.call(this);
     }
-
     return this;
   },
-
   // Adds a page
-
   _addPage: function(page) {
-    
     var data = this.data(),
       element = data.pageObjs[page];
 
@@ -297,29 +225,23 @@ turnMethods = {
 
           // Append to this flipbook
           this.append(data.pageWrap[page]);
-
           if (!data.pagePlace[page]) {
-            
             data.pagePlace[page] = page;
             // Move `pageObjs[page]` to wrapper
             data.pageObjs[page].appendTo(data.pageWrap[page]);
-          
          }
 
           // Set the size of the page
           var prop = turnMethods._pageSize.call(this, page, true);
           element.css({width: prop.width, height: prop.height});
           data.pageWrap[page].css(prop);
-
         }
 
         if (data.pagePlace[page] == page) {
 
          // If the page isn't in another place, create the flip effect
           turnMethods._makeFlip.call(this, page);
-
       }
-        
       } else {
 
         // Place
@@ -328,31 +250,22 @@ turnMethods = {
         // Remove element from the DOM
         if (data.pageObjs[page])
           data.pageObjs[page].remove();
-
       }
-
   },
 
   // Checks if a page is in memory
-  
   hasPage: function(page) {
-
     return has(page, this.data().pageObjs);
-  
   },
 
   // Centers the flipbook
-
   center: function(page) {
-    
     var data = this.data(),
       size = $(this).turn('size'),
       left = 0;
-
     if (!data.noCenter) {
       if (data.display=='double') {
         var view = this.turn('view', page || data.tpage || data.page);
-
         if (data.direction=='ltr') {
           if (!view[0])
             left -= size.width/4;
@@ -364,20 +277,14 @@ turnMethods = {
           else if (!view[1])
             left -= size.width/4;
         }
-      
       }
-
       $(this).css({marginLeft: left});
     }
-
     return this;
-
   },
 
   // Destroys the flipbook
-
   destroy: function () {
-
     var page,
       flipbook = this,
       data = this.data(),
@@ -385,123 +292,85 @@ turnMethods = {
         'end', 'first', 'flip', 'last', 'pressed',
         'released', 'start', 'turning', 'turned',
         'zooming', 'missing'];
-
     if (trigger('destroying', this)=='prevented')
       return;
-
     data.destroying = true;
-
     $.each(events, function(index, eventName) {
       flipbook.unbind(eventName);
     });
-
     this.parent().unbind('start', data.eventHandlers.start);
-
     $(document).unbind(mouseEvents.move, data.eventHandlers.touchMove).
       unbind(mouseEvents.up, data.eventHandlers.touchEnd);
-    
     while (data.totalPages!==0) {
       this.turn('removePage', data.totalPages);
     }
-
     if (data.fparent)
       data.fparent.remove();
-
     if (data.shadow)
       data.shadow.remove();
-
     this.removeData();
     data = null;
-
     return this;
-
   },
 
   // Checks if this element is a flipbook
-
   is: function() {
-
     return typeof(this.data().pages)=='object';
-
   },
 
   // Sets and gets the zoom value
-
   zoom: function(newZoom) {
-    
     var data = this.data();
-
     if (typeof(newZoom)=='number') {
-
       if (newZoom<0.001 || newZoom>100)
         throw turnError(newZoom+ ' is not a value for zoom');
-      
       if (trigger('zooming', this, [newZoom, data.zoom])=='prevented')
         return this;
-      
       var size = this.turn('size'),
         currentView = this.turn('view'),
         iz = 1/data.zoom,
         newWidth = Math.round(size.width * iz * newZoom),
         newHeight = Math.round(size.height * iz * newZoom);
-    
       data.zoom = newZoom;
-
       $(this).turn('stop').
         turn('size', newWidth, newHeight);
         /*.
         css({marginTop: size.height * iz / 2 - newHeight / 2});*/
-
       if (data.opts.autoCenter)
         this.turn('center');
       /*else
         $(this).css({marginLeft: size.width * iz / 2 - newWidth / 2});*/
-
       turnMethods._updateShadow.call(this);
-
       for (var i = 0; i<currentView.length; i++) {
         if (currentView[i] && data.pageZoom[currentView[i]]!=data.zoom) {
-  
           this.trigger('zoomed',[
             currentView[i],
             currentView,
             data.pageZoom[currentView[i]],
             data.zoom]);
-
           data.pageZoom[currentView[i]] = data.zoom;
       }
     }
-
       return this;
-
     } else
       return data.zoom;
-
   },
 
   // Gets the size of a page
-
   _pageSize: function(page, position) {
-
     var data = this.data(),
       prop = {};
-
     if (data.display=='single') {
-
       prop.width = this.width();
       prop.height = this.height();
-
       if (position) {
         prop.top = 0;
         prop.left = 0;
         prop.right = 'auto';
       }
-
     } else {
-
       var pageWidth = this.width()/2,
         pageHeight = this.height();
-
       if (data.pageObjs[page].hasClass('own-size')) {
         prop.width = data.pageObjs[page].width();
         prop.height = data.pageObjs[page].height();
@@ -509,41 +378,27 @@ turnMethods = {
         prop.width = pageWidth;
         prop.height = pageHeight;
       }
-      
       if (position) {
         var odd = page%2;
         prop.top = (pageHeight-prop.height)/2;
-
         if (data.direction=='ltr') {
-          
           prop[(odd) ? 'right' : 'left'] = pageWidth-prop.width;
           prop[(odd) ? 'left' : 'right'] = 'auto';
-
         } else {
-          
           prop[(odd) ? 'left' : 'right'] = pageWidth-prop.width;
           prop[(odd) ? 'right' : 'left'] = 'auto';
-
         }
-      
       }
     }
-
     return prop;
-
   },
 
   // Prepares the flip effect for a page
-
   _makeFlip: function(page) {
-
     var data = this.data();
-
     if (!data.pages[page] && data.pagePlace[page]==page) {
-      
       var single = data.display=='single',
         odd = page%2;
-
       data.pages[page] = data.pageObjs[page].
         css(turnMethods._pageSize.call(this, page)).
         flip({
@@ -555,29 +410,20 @@ turnMethods = {
 
         // Issue about z-index
         turnMethods._setPageLoc.call(this, page);
-
         data.pageZoom[page] = data.zoom;
-        
     }
-
     return data.pages[page];
   },
 
   // Makes pages within a range
-
   _makeRange: function() {
-
     var page, range,
       data = this.data();
-
     if (data.totalPages<1)
       return;
-
     range = this.turn('range');
-
     for (page = range[0]; page<=range[1]; page++)
       turnMethods._addPage.call(this, page);
-
   },
 
   // Returns a range of pages that should be in the DOM
@@ -588,25 +434,16 @@ turnMethods = {
   //
   // 1 2-3 4-5 6-7 8-9 10-11 12-13
   //   **  **  --   **  **
-
   range: function(page) {
-
     var remainingPages, left, right, view,
       data = this.data();
-
       page = page || data.tpage || data.page || 1;
       view = turnMethods._view.call(this, page);
-
       if (page<1 || page>data.totalPages)
         throw turnError('"'+page+'" is not a valid page');
-
-    
       view[1] = view[1] || view[0];
-      
       if (view[0]>=1 && view[1]<=data.totalPages) {
-
         remainingPages = Math.floor((pagesInDOM-2)/2);
-
         if (data.totalPages-view[1] > view[0]) {
           left = Math.min(view[0]-1, remainingPages);
           right = 2*remainingPages-left;
@@ -614,96 +451,67 @@ turnMethods = {
           right = Math.min(data.totalPages-view[1], remainingPages);
           left = 2*remainingPages-right;
         }
-
       } else {
         left = pagesInDOM-1;
         right = pagesInDOM-1;
       }
-
       return [Math.max(1, view[0]-left),
           Math.min(data.totalPages, view[1]+right)];
-
   },
 
   // Detects if a page is within the range of `pagesInDOM` from the current view
-
   _necessPage: function(page) {
-    
     if (page===0)
       return true;
-
     var range = this.turn('range');
-
     return this.data().pageObjs[page].hasClass('fixed') ||
       (page>=range[0] && page<=range[1]);
-    
   },
 
   // Releases memory by removing pages from the DOM
-
   _removeFromDOM: function() {
-
     var page, data = this.data();
-
     for (page in data.pageWrap)
       if (has(page, data.pageWrap) &&
         !turnMethods._necessPage.call(this, page))
       turnMethods._removePageFromDOM.call(this, page);
-    
   },
 
   // Removes a page from DOM and its internal references
-
   _removePageFromDOM: function(page) {
-
     var data = this.data();
-
     if (data.pages[page]) {
       var dd = data.pages[page].data();
-
       flipMethods._moveFoldingPage.call(data.pages[page], false);
-
       if (dd.f && dd.f.fwrapper)
         dd.f.fwrapper.remove();
-
       data.pages[page].removeData();
       data.pages[page].remove();
       delete data.pages[page];
     }
-
     if (data.pageObjs[page])
       data.pageObjs[page].remove();
-
     if (data.pageWrap[page]) {
       data.pageWrap[page].remove();
       delete data.pageWrap[page];
     }
-
     turnMethods._removeMv.call(this, page);
-
     delete data.pagePlace[page];
     delete data.pageZoom[page];
-
   },
 
   // Removes a page
-
   removePage: function(page) {
-
     var data = this.data();
 
     // Delete all the pages
     if (page=='*') {
-      
       while (data.totalPages!==0) {
         this.turn('removePage', data.totalPages);
       }
-
     } else {
-
       if (page<1 || page>data.totalPages)
         throw turnError('The page '+ page + ' doesn\'t exist');
-        
       if (data.pageObjs[page]) {
 
         // Stop animations
@@ -711,9 +519,7 @@ turnMethods = {
 
         // Remove `page`
         turnMethods._removePageFromDOM.call(this, page);
-
         delete data.pageObjs[page];
-
       }
 
       // Move the pages
@@ -723,34 +529,24 @@ turnMethods = {
       data.totalPages = data.totalPages-1;
 
       // Check the current view
-
       if (data.page>data.totalPages) {
-
        data.page = null;
        turnMethods._fitPage.call(this, data.totalPages);
-
       } else {
-
         turnMethods._makeRange.call(this);
         this.turn('update');
-
       }
     }
-
     return this;
-  
   },
 
   // Moves pages
-
   _movePages: function(from, change) {
-
     var page,
       that = this,
       data = this.data(),
       single = data.display=='single',
       move = function(page) {
-
         var next = page + change,
           odd = next%2,
           className = (odd) ? ' odd ' : ' even ';
