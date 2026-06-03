@@ -1,7 +1,11 @@
 /* ./css/style.css of page-flip for page-flip.bauska.org */
 /*    "../images/Vintage_Floral.jpg"); */
-@import url('https://fonts.googleapis.com/css?family=MonsieurLaDoulaise');
+@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap');
 
+.monsieur-la-doulaise-regular {
+  font-family: "Monsieur La Doulaise", cursive;
+  font-weight: 400;
+  font-style: normal;
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -21,7 +25,7 @@ body {
   background:  linear-gradient(
     rgba(255, 255, 255, 0.9), 
     rgba(255, 255, 255, 0.9)), url('../images/Ventage_Floral.jpg');
-  font-family: 'MonsieurLaDoulaise', cursive, 'Stalemate';
+  font-family: 'Monsieur La Doulaise', cursive, 'Stalemate';
 }
 p {
   font-size: 10px;
