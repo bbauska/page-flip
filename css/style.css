@@ -25,7 +25,7 @@ body {
   background:  linear-gradient(
     rgba(255, 255, 255, 0.9), 
     rgba(255, 255, 255, 0.9)), url('../images/Ventage_Floral.jpg');
-  font-family: 'Monsieur La Doulaise', cursive, 'Stalemate';
+  font-family: cursive, 'Monsieur La Doulaise', 'Stalemate';
 }
 p {
   font-size: 10px;
