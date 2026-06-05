@@ -24,7 +24,7 @@ body {
 */
   background:  linear-gradient(
     rgba(255, 255, 255, 0.9), 
-    rgba(255, 255, 255, 0.9)), url('../images/Ventage_Floral.jpg');
+    rgba(255, 255, 255, 0.9)), url("../images/Ventage_Floral.jpg?raw=true");
   font-family: cursive, 'Monsieur La Doulaise', 'Stalemate';
 }
 p {
@@ -56,7 +56,7 @@ p {
 
 }
 .pages [class^="page-num-"] {
-  background-image: url('../images/Paper_Texture.jpg');
+  background-image: url("../images/Paper_Texture.jpg?raw=true");
   background-size: auto 100%;
   position: relative;
 }
@@ -82,7 +82,7 @@ p {
 }
 .page-num-1 .pages-background {
   background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
-    url('../images/Vintage_Floral.webp');
+    url("../images/Vintage_Floral.webp?raw=true");
 /*    url'(https://openclipart.org/image/2400px/svg_to_png/242093/Vintage-Floral-Texture-Background.png); */
   background-size: cover;
   opacity: 0.2;
