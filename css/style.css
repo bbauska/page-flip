@@ -1,11 +1,6 @@
 /* ./css/style.css of page-flip for page-flip.bauska.org */
 /*    "../images/Vintage_Floral.jpg"); */
 @import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap');
-
-.monsieur-la-doulaise-regular {
-  font-family: "Monsieur La Doulaise", cursive;
-  font-weight: 400;
-  font-style: normal;
 *, *:before, *:after {
   box-sizing: border-box;
 }
