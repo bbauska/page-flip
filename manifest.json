@@ -1,24 +1,14 @@
 {
   "name": "Declaration of Independence",
   "short_name": "Page Flip", 
-  "start_url": "/page-flip.bauska.org",
+  "start_url": "./index.html",
   "display": "standalone",
   "icons": [
-    {
-      "src": "/images/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
-  ]
-}
-{
- "name": "Page Flip",
- "icons": [
   {
-   "src": "\/images/android-icon-36x36.png",
-   "sizes": "36x36",
-   "type": "image\/png",
-   "density": "0.75"
+    "src": "\/images/android-icon-36x36.png",
+    "sizes": "36x36",
+    "type": "image\/png",
+    "density": "0.75"
   },
   {
    "src": "\/images/android-icon-48x48.png",
@@ -50,5 +40,5 @@
    "type": "image\/png",
    "density": "4.0"
   }
- ]
+]
 }
