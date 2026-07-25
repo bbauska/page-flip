@@ -1,7 +1,7 @@
 {
   "name": "Declaration of Independence",
   "short_name": "Page Flip", 
-  "start_url": "./index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "icons": [
   {
