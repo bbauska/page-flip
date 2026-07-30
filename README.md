@@ -1,3 +1,3 @@
-# page-flip Declaration of Independence
+# page-flip 
 Corner tab page flip.
 
