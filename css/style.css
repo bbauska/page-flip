@@ -1,5 +1,4 @@
-/* ./css/style.css of page-flip for page-flip.bauska.org */
-/*    "../images/Vintage_Floral.jpg"); */
+/* ./css/style.css of senate-flip for senate-flip.bauska.org */
 @import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap');
 *, *:before, *:after {
   box-sizing: border-box;
@@ -8,15 +7,6 @@ img {
   max-width: 100%;
 }
 body {
-/*   background:  linear-gradient(
-      rgba(255, 250, 250, 0.75), 
-      rgba(255, 250, 250, 0.75)), url(https://image.freepik.com/free-vector/forest-herbs-blue-background_8365-70.jpg); 
-*/
-/*     background:     linear-gradient(
-      rgba(255, 250, 250, 0.75), 
-      rgba(255, 250, 250, 0.75)
-    ), url(https://i.pinimg.com/736x/3c/c0/54/3cc0541a55ce0550f78246bed0a96380--vintage-floral-backgrounds-vintage-wallpapers.jpg); 
-*/
   background:  linear-gradient(
     rgba(255, 255, 255, 0.9), 
     rgba(255, 255, 255, 0.9)), url(../images/Ventage_Floral.jpg?raw=true);
@@ -78,7 +68,6 @@ p {
 .page-num-1 .pages-background {
   background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
     url(../images/Vintage_Floral.webp?raw=true);
-/*    url'(https://openclipart.org/image/2400px/svg_to_png/242093/Vintage-Floral-Texture-Background.png); */
   background-size: cover;
   opacity: 0.2;
   width: 100%;
